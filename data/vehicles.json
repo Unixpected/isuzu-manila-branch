@@ -1,0 +1,271 @@
+{
+  "categories": [
+    {
+      "id": "passenger",
+      "name": "Passenger Vehicles",
+      "subtitle": "Personal & Family",
+      "icon": "👨‍👩‍👧‍👦",
+      "description": "Personal & Family vehicles for everyday comfort",
+      "models": [
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "RZ4E Single Cab 4x2 MT",
+          "priceRange": "₱978,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2023/variants/WORKHORSE/SC-Cab-and-Chassis-2.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "RZ4E 4x2 LT MT",
+          "priceRange": "₱1,197,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2023/variants/WORKHORSE/D-MAX-3-0-4x4-LT-Front_Splash-White.jpg"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 Single Cab 4x4 MT",
+          "priceRange": "₱1,462,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2023/variants/WORKHORSE/D-MAX-3-0-4x4-SINGLE-CAB-Front_Splash-White-4-002.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x4 LT MT",
+          "priceRange": "₱1,607,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2023/variants/WORKHORSE/D-MAX-3-0-4x4-LT-Front_Splash-White.jpg"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x2 LS-A MT Plus",
+          "priceRange": "₱1,796,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2024/variants/LS-A/2024ISUZU_DMAX_4X2_Splash_White.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x2 LS-A AT Plus",
+          "priceRange": "₱1,880,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2024/variants/LS-A/2024ISUZU_DMAX_4X2_Splash_White.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x4 LS-A MT Plus",
+          "priceRange": "₱2,160,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2024/variants/LS-A/2024ISUZU_DMAX_4X2_Splash_White.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x2 LS-E AT",
+          "priceRange": "₱2,094,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2024/variants/LS-E/DMAX_4x4_Namibu_Orange_.png"
+        },
+        {
+          "model": "Isuzu D-MAX",
+          "variant": "3.0 4x4 LS-E AT",
+          "priceRange": "₱2,394,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/dmax-2024/variants/LS-E/DMAX_4x4_Namibu_Orange_.png"
+        },
+        {
+          "model": "Isuzu mu-X",
+          "variant": "RZ4E 4x2 LS AT",
+          "priceRange": "₱1,725,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/mux-2025/variants/LS/LS-Onyx-Black.webp"
+        },
+        {
+          "model": "Isuzu mu-X",
+          "variant": "3.0 4x2 LS-A AT",
+          "priceRange": "₱2,069,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/mux-2025/variants/LS-A/LS-A-Eiger-Grey.webp"
+        },
+        {
+          "model": "Isuzu mu-X",
+          "variant": "3.0 4x2 LS-E AT",
+          "priceRange": "₱2,320,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/mux-2025/variants/LS-E/LS-E-Front-Left-Satin-Pearl-White.webp"
+        },
+        {
+          "model": "Isuzu mu-X",
+          "variant": "3.0 4x4 LS-E AT",
+          "priceRange": "₱2,670,000 SRP",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/mux-2025/variants/LS-E/LS-E-Front-Left-Satin-Pearl-White.webp"
+        }
+      ]
+    },
+    {
+      "id": "light-commercial",
+      "name": "Light Commercial Vehicles",
+      "subtitle": "Small Business",
+      "icon": "🏪",
+      "description": "Small Business solutions for efficient operations",
+      "models": [
+        {
+          "model": "Isuzu Traviz",
+          "variant": "Traviz S (Short Wheelbase)",
+          "priceRange": "around ₱1,070,000",
+          "image": "https://www.isuzuphil.com/storage/app/uploads/public/61b/80b/e86/61b80be8625bd832744100.jpg"
+        },
+        {
+          "model": "Isuzu Traviz",
+          "variant": "Traviz L (Long Wheelbase)",
+          "priceRange": "around ₱1,140,000",
+          "image": "https://www.isuzuphil.com/storage/app/uploads/public/61b/80b/e86/61b80be8625bd832744100.jpg"
+        }
+      ]
+    },
+    {
+      "id": "medium-duty",
+      "name": "Light to Medium Duty Trucks",
+      "subtitle": "N-Series & F-Series",
+      "icon": "🚛",
+      "description": "N-Series & F-Series for versatile hauling",
+      "models": [
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NPS75 (4x4) 14ft",
+          "priceRange": "around ₱2,410,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series-variant.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NQR75 18ft",
+          "priceRange": "around ₱1,770,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/NQR75L.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NPR85 16ft",
+          "priceRange": "around ₱1,671,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/NPR85K.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NMR85H 14ft",
+          "priceRange": "around ₱1,575,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/NMR85HS Aluminum Van.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NMR85E 10ft",
+          "priceRange": "around ₱1,550,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/July/NMR85H_Aluminum_Van.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NLR85 10ft",
+          "priceRange": "around ₱1,505,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/July/New-GR1_6275-NLR85-quarter-right.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NLR77H 14ft",
+          "priceRange": "around ₱1,450,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/NLR77H.png"
+        },
+        {
+          "model": "Isuzu N-Series",
+          "variant": "NLR77E 10ft",
+          "priceRange": "around ₱1,399,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//n-series/2022/QLR77-BS.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FRR90 20ft",
+          "priceRange": "around ₱2,280,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//trucks/F-SERIES_FOR_ADV.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FTR90M 18.5ft",
+          "priceRange": "around ₱2,790,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//f series trucks/ftr90m2022.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FTR90S 26ft",
+          "priceRange": "around ₱2,900,000"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FVR34Q 24ft",
+          "priceRange": "around ₱3,090,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//GR1_6354-FVR34-quarter right.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FVM34T 25ft",
+          "priceRange": "around ₱3,610,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//f series trucks/FVM34-T.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FVM34W 32ft",
+          "priceRange": "around ₱3,760,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//GR1_5282-FVM34 W quarter right.png"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FVZ34 25ft",
+          "priceRange": "around ₱4,680,000"
+        },
+        {
+          "model": "Isuzu F-Series",
+          "variant": "FTS34 14ft",
+          "priceRange": "around ₱3,930,000"
+        }
+      ]
+    },
+    {
+      "id": "heavy-duty",
+      "name": "Heavy Duty & Special Purpose",
+      "subtitle": "C&E Series, Buses & PUVs",
+      "icon": "💪",
+      "description": "Heavy-duty and special purpose vehicles for commercial operations",
+      "models": [
+        {
+          "model": "Isuzu C & E Series",
+          "variant": "CYZ52 (10-wheeler)",
+          "priceRange": "around ₱5,050,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//ceSeriesVariants/6-ceseries-arcwhite-cyz-3.webp"
+        },
+        {
+          "model": "Isuzu C & E Series",
+          "variant": "CYH52 (12-wheeler)",
+          "priceRange": "around ₱5,750,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//ceSeriesVariants/7-cyh-arcwhite-2.webp"
+        },
+        {
+          "model": "Isuzu Modern PUV",
+          "variant": "Traviz PUV Class I",
+          "priceRange": "Price on Request",
+          "image": "https://www.isuzuphil.com/storage/app/media//traviz-puv-variant.png"
+        },
+        {
+          "model": "Isuzu Modern PUV",
+          "variant": "NLR77 Almazora Class II",
+          "priceRange": "Price on Request",
+          "image": "https://www.isuzuphil.com/storage/app/media//puv-variants/NLR77 2.0 Almazora.png"
+        },
+        {
+          "model": "Isuzu Modern PUV",
+          "variant": "NLR77 Centro Class II",
+          "priceRange": "Price on Request",
+          "image": "https://www.isuzuphil.com/storage/app/media//puv-variants/NLR77 2.0 Centro.png"
+        },
+        {
+          "model": "Passenger Buses",
+          "variant": "NQR Bus (28-35 Seater)",
+          "priceRange": "around ₱3,200,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//NQR.png"
+        },
+        {
+          "model": "Passenger Buses",
+          "variant": "FVR Bus (45-61 Seater)",
+          "priceRange": "around ₱4,500,000",
+          "image": "https://www.isuzuphil.com/storage/app/media//FVR.png"
+        },
+        {
+          "model": "S&E Series (Super Heavy Duty)",
+          "variant": "SW5/SG5 (Super Heavy)",
+          "priceRange": "Price on Request",
+          "image": "https://www.isuzuphil.com/themes/isuzuphil/assets/images/se-series/models/sw5.png"
+        }
+      ]
+    }
+  ]
+}
