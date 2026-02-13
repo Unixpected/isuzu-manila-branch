@@ -177,11 +177,6 @@
         },
         {
           "model": "Isuzu F-Series",
-          "variant": "FTR90S 26ft",
-          "priceRange": "around ₱2,900,000"
-        },
-        {
-          "model": "Isuzu F-Series",
           "variant": "FVR34Q 24ft",
           "priceRange": "around ₱3,090,000",
           "image": "https://www.isuzuphil.com/storage/app/media//GR1_6354-FVR34-quarter right.png"
@@ -197,16 +192,6 @@
           "variant": "FVM34W 32ft",
           "priceRange": "around ₱3,760,000",
           "image": "https://www.isuzuphil.com/storage/app/media//GR1_5282-FVM34 W quarter right.png"
-        },
-        {
-          "model": "Isuzu F-Series",
-          "variant": "FVZ34 25ft",
-          "priceRange": "around ₱4,680,000"
-        },
-        {
-          "model": "Isuzu F-Series",
-          "variant": "FTS34 14ft",
-          "priceRange": "around ₱3,930,000"
         }
       ]
     },
