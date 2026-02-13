@@ -98,30 +98,24 @@
     <script>
         let vehicleData = {};
 
-        async function checkPassword() {
-            // Hash for "isuzu" (SHA-256). The actual password is not stored in the code.
-            // To generate a new hash for a different password, run this in your browser console (F12):
-            // await crypto.subtle.digest('SHA-256', new TextEncoder().encode('NEW_PASSWORD')).then(b => Array.from(new Uint8Array(b)).map(h => h.toString(16).padStart(2,'0')).join(''))
-            const correctHash = "c2c53d66948214258a26ca9ca845d7ac0c17f8e725b55536106964d30d788b36"; 
+        function togglePasswordVisibility() {
+            const input = document.getElementById('password-input');
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function checkPassword() {
+            const correctPassword = "isuzu"; 
             
-            const enteredPassword = document.getElementById('password-input').value;
+            const input = document.getElementById('password-input');
+            const enteredPassword = input.value.trim().toLowerCase();
 
-            try {
-                const msgBuffer = new TextEncoder().encode(enteredPassword);
-                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-                const hashArray = Array.from(new Uint8Array(hashBuffer));
-                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-                if (hashHex === correctHash) {
-                    document.getElementById('login-overlay').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    initializeAdminPanel();
-                } else {
-                    alert("Incorrect Password");
-                }
-            } catch (e) {
-                console.error(e);
-                alert("Browser not supported for secure login.");
+            if (enteredPassword === correctPassword) {
+                const overlay = document.getElementById('login-overlay');
+                if (overlay) overlay.style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                initializeAdminPanel();
+            } else {
+                alert("Incorrect Password !");
             }
         }
 
