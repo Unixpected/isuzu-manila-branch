@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>Site Admin - Isuzu Manila</title>
+    <style>
+        body { font-family: 'Arial', sans-serif; background: #f4f4f4; color: #333; margin: 0; padding-bottom: 50px; }
+        header { background-color: #E60012; padding: 20px 40px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        h1 { margin: 0; font-size: 24px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        
+        .category-block { background: white; padding: 20px; margin-bottom: 30px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .category-header { border-bottom: 2px solid #E60012; padding-bottom: 10px; margin-bottom: 20px; font-size: 20px; font-weight: bold; color: #333; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 10px; background: #eee; font-size: 14px; }
+        td { padding: 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+        
+        input[type="text"] { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input[type="text"]:focus { border-color: #E60012; outline: none; }
+        
+        .actions { margin-top: 20px; text-align: right; }
+        .btn { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .btn-save { background-color: #28a745; color: white; }
+        .btn-save:hover { background-color: #218838; }
+        
+        .instructions { background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 4px; margin-bottom: 20px; color: #856404; }
+
+        /* Login Overlay */
+        #login-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .login-box h2 { margin-bottom: 20px; }
+        .login-box input { width: 100%; margin-bottom: 15px; }
+        .login-box button { width: 100%; background-color: #E60012; color: white; }
+    </style>
+</head>
+<body>
+        <div class="login-box">
+            <h2>Admin Access</h2>
+            <input type="password" id="password-input" placeholder="Enter Password">
+            <button class="btn" onclick="checkPassword()">Login</button>
+        </div>
+    </header>
+    </div>
+
+    <div id="main-content" style="display: none;">
+        <header>
+            <h1>Isuzu Manila - Content Manager</h1>
+            <div>
+                <button class="btn" onclick="toggleSettings()" style="background: #444; color: white; margin-right: 10px;">⚙️ Setup GitHub</button>
+                <button class="btn btn-save" onclick="updateGitHub()">Update Live Site</button>
+            </div>
+        </header>
+
+        <div id="settings-panel" style="display:none; background: #333; color: white; padding: 20px;">
+            <div class="container" style="margin: 0 auto;">
+                <h3>GitHub Connection Settings</h3>
+                <p style="font-size: 14px; color: #ccc;">To update the site directly, enter your repository details below. These are saved in your browser.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;">
+                    <input type="text" id="gh-owner" placeholder="Username (e.g. alfred)" style="width: 200px;">
+                    <input type="text" id="gh-repo" placeholder="Repo Name (e.g. car-dealership-site)" style="width: 250px;">
+                    <input type="password" id="gh-token" placeholder="Personal Access Token (repo scope)" style="width: 300px;">
+                    <button class="btn" onclick="saveSettings()" style="background: #E60012; color: white;">Save & Connect</button>
+                </div>
+                <p style="font-size: 12px; margin-top: 10px; color: #aaa;">
+                    Need a token? Go to <a href="https://github.com/settings/tokens" target="_blank" style="color: white;">GitHub Developer Settings</a> -> Generate New Token (Classic) -> Select 'repo' scope.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="instructions">
+                <strong>How to update your site:</strong><br>
+                1. <b>Setup:</b> Click "Setup GitHub" and enter your details (only needed once).<br>
+                2. <b>Edit:</b> Change prices and details below.<br>
+                3. <b>Save:</b> Click "Update Live Site". Changes appear in ~2 minutes.
+            </div>
+            <div id="editor-area">Loading data...</div>
+        </div>
+    </div>
+
+    <script>
+        let vehicleData = {};
+
+        async function checkPassword() {
+            // Hash for "isuzu" (SHA-256). The actual password is not stored in the code.
+            // To generate a new hash for a different password, run this in your browser console (F12):
+            // await crypto.subtle.digest('SHA-256', new TextEncoder().encode('NEW_PASSWORD')).then(b => Array.from(new Uint8Array(b)).map(h => h.toString(16).padStart(2,'0')).join(''))
+            const correctHash = "c2c53d66948214258a26ca9ca845d7ac0c17f8e725b55536106964d30d788b36"; 
+            
+            const enteredPassword = document.getElementById('password-input').value;
+
+            try {
+                const msgBuffer = new TextEncoder().encode(enteredPassword);
+                const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                if (hashHex === correctHash) {
+                    document.getElementById('login-overlay').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                    initializeAdminPanel();
+                } else {
+                    alert("Incorrect Password");
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Browser not supported for secure login.");
+            }
+        }
+
+        function initializeAdminPanel() {
+            document.getElementById('gh-owner').value = localStorage.getItem('gh-owner') || '';
+            document.getElementById('gh-repo').value = localStorage.getItem('gh-repo') || '';
+            document.getElementById('gh-token').value = localStorage.getItem('gh-token') || '';
+            
+            // Try loading from GitHub if credentials exist
+            if (localStorage.getItem('gh-token')) {
+                loadFromGitHub();
+            } else {
+                // Fallback to local file fetch
+                loadLocalFile();
+            }
+        }
+
+        // Load existing data
+        function loadLocalFile() {
+            fetch('data/vehicles.json')
+                .then(res => res.json())
+                .then(data => {
+                    vehicleData = data;
+                    renderEditor();
+                })
+                .catch(err => {
+                    showManualLoad("Could not load local file automatically.");
+                });
+        }
+
+        function showManualLoad(msg) {
+            document.getElementById('editor-area').innerHTML = `
+                <p style="color: #E60012; font-weight: bold;">${msg}</p>
+                <p>Please select your <b>vehicles.json</b> file manually, or configure GitHub settings to load directly.</p>
+                <input type="file" id="json-upload" accept=".json" onchange="loadFromFile(this)" style="padding: 10px; border: 1px solid #ccc; background: white;">
+            `;
+        }
+
+        function renderEditor() {
+            const container = document.getElementById('editor-area');
+            container.innerHTML = '';
+
+            vehicleData.categories.forEach((cat, catIndex) => {
+                const block = document.createElement('div');
+                block.className = 'category-block';
+                
+                let html = `<div class="category-header">${cat.name}</div>`;
+                html += `<table>
+                    <thead>
+                        <tr>
+                            <th width="25%">Model</th>
+                            <th width="30%">Variant</th>
+                            <th width="25%">Price (SRP)</th>
+                            <th width="20%">Image URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>`;
+                
+                cat.models.forEach((model, modelIndex) => {
+                    html += `
+                        <tr>
+                            <td><input type="text" value="${model.model}" onchange="updateData(${catIndex}, ${modelIndex}, 'model', this.value)"></td>
+                            <td><input type="text" value="${model.variant}" onchange="updateData(${catIndex}, ${modelIndex}, 'variant', this.value)"></td>
+                            <td><input type="text" value="${model.priceRange}" onchange="updateData(${catIndex}, ${modelIndex}, 'priceRange', this.value)"></td>
+                            <td><input type="text" value="${model.image || ''}" placeholder="https://..." onchange="updateData(${catIndex}, ${modelIndex}, 'image', this.value)"></td>
+                        </tr>
+                    `;
+                });
+
+                html += `</tbody></table>`;
+                block.innerHTML = html;
+                container.appendChild(block);
+            });
+        }
+
+        function updateData(catIndex, modelIndex, field, value) {
+            vehicleData.categories[catIndex].models[modelIndex][field] = value;
+        }
+
+        function loadFromFile(input) {
+            const file = input.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    vehicleData = JSON.parse(e.target.result);
+                    renderEditor();
+                } catch (e) {
+                    alert("Error parsing JSON file: " + e.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // --- GitHub Integration ---
+
+        function toggleSettings() {
+            const panel = document.getElementById('settings-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function saveSettings() {
+            localStorage.setItem('gh-owner', document.getElementById('gh-owner').value);
+            localStorage.setItem('gh-repo', document.getElementById('gh-repo').value);
+            localStorage.setItem('gh-token', document.getElementById('gh-token').value);
+            alert('Settings saved! Reloading data from GitHub...');
+            toggleSettings();
+            loadFromGitHub();
+        }
+
+        async function loadFromGitHub() {
+            const owner = localStorage.getItem('gh-owner');
+            const repo = localStorage.getItem('gh-repo');
+            const token = localStorage.getItem('gh-token');
+
+            if (!owner || !repo || !token) return loadLocalFile();
+
+            document.getElementById('editor-area').innerHTML = 'Connecting to GitHub...';
+
+            try {
+                // Add timestamp to bypass cache
+                const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/data/vehicles.json?t=${Date.now()}`, {
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3.raw' }
+                });
+                
+                if (!response.ok) throw new Error("Failed to fetch from GitHub. Check settings.");
+                
+                vehicleData = await response.json();
+                renderEditor();
+            } catch (e) {
+                showManualLoad("Error loading from GitHub: " + e.message);
+            }
+        }
+
+        async function updateGitHub() {
+            const owner = localStorage.getItem('gh-owner');
+            const repo = localStorage.getItem('gh-repo');
+            const token = localStorage.getItem('gh-token');
+
+            if (!owner || !repo || !token) {
+                alert("Please click 'Setup GitHub' and enter your details first.");
+                toggleSettings();
+                return;
+            }
+
+            const btn = document.querySelector('.btn-save');
+            const originalText = btn.textContent;
+            btn.textContent = "Updating...";
+            btn.disabled = true;
+
+            try {
+                // 1. Get SHA
+                const getRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/data/vehicles.json`, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                if (!getRes.ok) throw new Error("Could not verify file on GitHub.");
+                const fileData = await getRes.json();
+
+                // 2. Update
+                const content = JSON.stringify(vehicleData, null, 2);
+                // UTF-8 safe base64 encoding
+                const contentEncoded = btoa(unescape(encodeURIComponent(content)));
+
+                const putRes = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/data/vehicles.json`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: "Update prices via Admin Panel",
+                        content: contentEncoded,
+                        sha: fileData.sha
+                    })
+                });
+
+                if (!putRes.ok) throw new Error("Update failed.");
+                
+                alert("Success! Website updated. Changes will appear in 1-2 minutes.");
+            } catch (e) {
+                alert("Error: " + e.message);
+            } finally {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200">
     <title>Vehicle Lineup - Isuzu Manila Branch</title>
     <style>
         * {
@@ -357,7 +357,7 @@
             <div class="logo">ISUZU MANILA BRANCH</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="vehicles.html" class="active">Vehicles</a></li>
+                <li><a href="vehicles.html?view=all" class="active">Vehicles</a></li>
                 <li><a href="#" id="contact-link">Contact</a></li>
             </ul>
         </nav>
@@ -412,7 +412,8 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Isuzu Motors. All rights reserved.</p>
+        <p>&copy; 2026 Isuzu Manila Branch. All rights reserved.</p>
+        <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Disclaimer: Prices and specifications are subject to change without prior notice. Images may vary from actual unit.</p>
     </footer>
 
     <!-- Inline vehicle data -->
@@ -494,28 +495,25 @@
         let vehiclesData = {};
         const inlineEl = document.getElementById('inline-vehicles');
         
-        // Initialize
-        if (inlineEl) {
-            try {
-                vehiclesData = JSON.parse(inlineEl.textContent);
+        // Prioritize external JSON for admin updates
+        fetch('data/vehicles.json')
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to load external data");
+                return response.json();
+            })
+            .then(data => {
+                vehiclesData = data;
                 populateGallery();
-            } catch (err) {
-                console.error('Error parsing inline vehicle data:', err);
-                loadExternalData();
-            }
-        } else {
-            loadExternalData();
-        }
-
-        function loadExternalData() {
-            fetch('data/vehicles.json')
-                .then(response => response.json())
-                .then(data => {
-                    vehiclesData = data;
-                    populateGallery();
-                })
-                .catch(error => console.error('Error loading vehicle data:', error));
-        }
+            })
+            .catch(error => {
+                console.warn('Using inline fallback:', error);
+                if (inlineEl) {
+                    try {
+                        vehiclesData = JSON.parse(inlineEl.textContent);
+                        populateGallery();
+                    } catch (e) { console.error(e); }
+                }
+            });
 
         function populateGallery() {
             const galleryGrid = document.querySelector('.gallery-grid');
@@ -637,38 +635,8 @@
                 html += `</tbody></table>`;
             });
 
-            html += `
-                <table class="vehicle-table" id="full-vehicle-table">
-                    <thead>
-                        <tr>
-                            <th>Image</th>
-                            <th>Model</th>
-                            <th>Variant</th>
-                            <th>2026 Price (SRP)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            cat.models.forEach(model => {
-                const imgHtml = model.image ? `<img src="${model.image}" alt="${model.model}" class="vehicle-thumb">` : '';
-                html += `
-                    <tr>
-                        <td>${imgHtml}</td>
-                        <td>${model.model}</td>
-                        <td>${model.variant}</td>
-                        <td>${model.priceRange}</td>
-                        <td><button class="inquire-btn">Inquire</button></td>
-                    </tr>
-                `;
-            });
-
-            html += `
-                    </tbody>
-                </table>
-                <div style="margin-top:16px;"><button class="reset-filter" id="panel-show-all">Show All Details & Pricing</button></div>
-            `;
+            
+            // Removed full table and show-all button as per request
 
             content.innerHTML = html;
             panel.classList.add('visible');
@@ -699,18 +667,6 @@
                 });
             });
 
-            const showAllBtn = document.getElementById('panel-show-all');
-            if (showAllBtn) {
-                showAllBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const table = document.getElementById('full-vehicle-table');
-                    const isVisible = table.classList.toggle('visible');
-                    if (isVisible) {
-                        document.querySelectorAll('.model-table').forEach(t => t.classList.remove('visible'));
-                    }
-                    showAllBtn.textContent = isVisible ? 'Hide All Details' : 'Show All Details & Pricing';
-                });
-            }
         }
 
         // Close panel logic
